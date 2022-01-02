@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
+import { useFetchGifts } from '../hooks/useFetchGifts';
+// import { getGift } from '../helpers/getGifts';
 import { GiftGridItem } from './GiftGridItem';
 
 export const GiftGrid = ({category}) => {
 
-    const [images, setImages] = useState([]);
+    // const [images, setImages] = useState([]);
     
-    useEffect(() => {
-        getGift();
-    }, []);
+    const { data: images, loading } = useFetchGifts( category );
     
-    const getGift = async () => {
-        const url = 'https://api.giphy.com/v1/gifs/search?q=Rick+and+Morty&limit=10&api_key=RraQhFryndIMZlN8Z0633eAiuoLe9XR1'
-
-        const resp = await fetch(url);
-        const { data } = await resp.json()
-
-        const gifts = data.map(img => {
-            return {
-                id: img.id,
-                title: img.title,
-                url: img.images?.downsized_medium.url,
-            }
-        });
-        setImages(gifts);
-        console.log(gifts)
-    }
+    // useEffect(() => {
+    //     getGift( category ).then( setImages );
+    // }, [ category ]);
+    
     
     // getGift();
     
     return (
         <>
             <h3>{category}</h3>
+
+            { loading && <p className='animate__animated animate__zoomIn'>Loading...</p>}
             <div className='card-grid'>
                 {
                     images.map( img => (
