@@ -8,7 +8,7 @@ export const useFetchGifts = ( category ) => {
         data: [],
         loading: true
     });
-
+    
     useEffect( () => {
         getGift( category )
             .then(img => {
@@ -17,7 +17,7 @@ export const useFetchGifts = ( category ) => {
                         data: img,
                         loading: false
                     })
-                }, 3000)
+                }, 1000)
             });
     }, [category]);
 
