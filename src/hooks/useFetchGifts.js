@@ -12,12 +12,10 @@ export const useFetchGifts = ( category ) => {
     useEffect( () => {
         getGift( category )
             .then(img => {
-                setTimeout( ()=>{
                     setState({
                         data: img,
                         loading: false
                     })
-                }, 1000)
             });
     }, [category]);
 
