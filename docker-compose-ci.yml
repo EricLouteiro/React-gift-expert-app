@@ -6,5 +6,4 @@ services:
     restart: always
     stdin_open: true
     tty: true
-    command: ["/bin/sh"]
-    args: ["-c", "while true; do echo hello; sleep 10;done"]
+    command: ["sh", "-c", "while true; do echo hello; sleep 10;done"]
